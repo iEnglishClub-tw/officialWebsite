@@ -1,0 +1,79 @@
+
+<!-- index.html -->
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="components/Fragment :: header"></head>
+<body>
+<div th:replace="components/Fragment :: navbar">navbar here</div>
+<div>
+    <div class="container">
+<!--        <div th:replace="components/Frament :: carousel">fragments</div> -->
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item center active">
+                    <img th:src="@{/assets/images/testing1.png}" width="400px" height="300px"  class="rounded mx-auto d-block" alt="First slide"/>
+                </div>
+                <div class="carousel-item center">
+                    <img th:src="@{/assets/images/testing2.png}" width="400px" height="300px" class="rounded mx-auto d-block" alt="Second slide"/>
+                </div>
+                <div class="carousel-item center">
+                    <img th:src="@{/assets/images/testing3.png}" width="400px" height="300px" class="rounded mx-auto d-block" alt="Third slide"/>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+        <div class="col-lg-7">
+            <div class="col-md-12">
+                <h2>Welecome to iEnglish</h2>
+                <p>Taipei Interactive English Club (簡稱 iEnglish Club) 正式創立於2012年為非營利的英文讀書會及英語會話社團，提供英語會話及英語演講等全英文口說環境，討論國際新聞、 生活旅遊新知、每週精選文章等，至今成功舉辦超過200場聚會活動。社團成員 大多以上班族及研究生為主，在 iEnglish 可以增進英文能力更能拓展人脈及社交圈，歡迎來看！</p>
+            </div>
+            <div class="col-md-12">
+                <h2>Activity Schedule During Gatherings</h2>
+                <ul>
+                    <li>14:30-15:20- Session I: Current Events Discussion (News/Free Talk)</li>
+                    <li>15:20-15:30- Feedback I</li>
+                    <li>15:30-15:40- Regrouping & Break</li>
+                    <li>15:40-16:00- Speaker Session</li>
+                    <li>16:00-17:00- Session II: Article Discussion (Please MUST read weekly article)</li>
+                    <li>17:00-17:15- Feedback II</li>
+                    <li>17:15-17:30- Closing (Welcome to have dinner with us!)</li>
+                </ul>
+            </div>
+
+        </div>
+        <div class="col-lg-5">
+            <div class="col-md-12">
+                <h2>Calendar Feeds</h2>
+                <!-- Calendar Feed Here -->
+                <div>
+                    <!-- Feed title here-->
+                    <div class="calendarBanner">
+                        iEnglish Schedule
+                    </div>
+                    <div class="calendarItem">
+                        Event 1
+                    </div>
+                    <div class="calendarItem">
+                        Event 2
+                    </div>
+                    <div class="calendarItem">
+                        Event 3
+                    </div>
+                    <div class="calendarItem">
+                        Event 4
+                    </div>
+                    <!-- Feed Footer -->
+                    <div class="calendarBanner">
+                        calendar Footer here
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <h2>FaceBook FanPage</h2>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+<div th:replace="components/Fragment :: footer">footer here</div>
+</body>
+</html>
