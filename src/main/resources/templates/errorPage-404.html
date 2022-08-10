@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!--<head>
+    <meta charset="UTF-8">
+    <title>Http 404 Not Found</title>
+</head>-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" th:href="@{/assets/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/assets/font-awesome-4.7.0/css/font-awesome.min.css}"/>
+    <link rel="stylesheet" th:href="@{/assets/main.css}" />
+    <script th:src="@{/assets/jquery.min.js}"></script>
+    <script th:src="@{/assets/bootstrap.bundle.min.js}"></script>
+
+    <title>Http 404 Not Found</title>
+</head>
+<body>
+<div class="container">
+
+    <h1 class="error-code">404</h1>
+    <h2 class="error-message"> Page Not Found </h2>
+
+    <a th:href="@{/}" class="btn btn-secondary"><span class="fa fa-home" aria-hidden="true"></span> IndexPage</a>
+
+
+</div>
+</body>
+</html>
