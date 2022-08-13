@@ -10,13 +10,14 @@
     <link rel="stylesheet" th:href="@{/assets/bootstrap.min.css}"/>
     <link rel="stylesheet" th:href="@{/assets/font-awesome-4.7.0/css/font-awesome.min.css}"/>
     <link rel="stylesheet" th:href="@{/assets/main.css}" />
+    <link rel="stylesheet" th:href="@{/assets/errorpage.css}" />
     <script th:src="@{/assets/jquery.min.js}"></script>
     <script th:src="@{/assets/bootstrap.bundle.min.js}"></script>
 
     <title>Http 404 Not Found</title>
 </head>
 <body>
-<div class="container">
+<!--<div class="container">
 
     <h1 class="error-code">404</h1>
     <h2 class="error-message"> Page Not Found </h2>
@@ -24,6 +25,20 @@
     <a th:href="@{/}" class="btn btn-secondary"><span class="fa fa-home" aria-hidden="true"></span> IndexPage</a>
 
 
+</div> -->
+<div class="container vh-100" style="
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+">
+
+    <h1 class="error-code text-center">404</h1>
+    <h2 class="error-message text-center"><span class="text-danger">Opps!</span> Page not found.</h2>
+
+    <a href="/" class="btn btn-secondary">
+        <span class="fa fa-home" aria-hidden="true"></span> IndexPage
+    </a>
 </div>
 </body>
 </html>
