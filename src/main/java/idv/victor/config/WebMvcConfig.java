@@ -11,11 +11,18 @@ import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
 import java.util.Locale;
 
+/**
+ * WebMvcConfig 是一個配置類，用於配置 Spring MVC 的相關設置。
+ * 它包括語言解析器、語言切換攔截器及靜態資源處理。
+ */
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
+
     /**
-     * 默認解析器 其中locale表示默認語言,當請求中未包含語種信息，則設置默認語種
-     * 當前默認為TAIWAN, zh_TW
+     * 配置默認的語言解析器。
+     * 當請求中未包含語言信息時，設置默認語言為台灣中文 (zh_TW)。
+     *
+     * @return 設置了默認語言的 LocaleResolver 實例
      */
     @Bean
     public LocaleResolver localeResolver() {
@@ -25,7 +32,10 @@ public class WebMvcConfig implements WebMvcConfigurer {
     }
 
     /**
-     * 默認攔截器 其中lang表示切換語言的參數名
+     * 配置語言切換攔截器。
+     * 攔截器會檢查請求參數中的 "lang" 參數，並切換語言。
+     *
+     * @return 配置了參數名稱的 LocaleChangeInterceptor 實例
      */
     @Bean
     public LocaleChangeInterceptor localeChangeInterceptor() {
@@ -34,14 +44,25 @@ public class WebMvcConfig implements WebMvcConfigurer {
         return lci;
     }
 
+    /**
+     * 新增語言切換攔截器到攔截器註冊表中。
+     * 攔截器會處理網站的語系切換。
+     *
+     * @param registry 攔截器註冊表
+     */
     @Override
-    public void addInterceptors(InterceptorRegistry registry){
+    public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(localeChangeInterceptor());
     }
 
+    /**
+     * 配置靜態資源處理。
+     * 將 "/assets/**" 路徑的請求映射到 classpath 下的 "static" 目錄。
+     *
+     * @param registry 靜態資源註冊表
+     */
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/assets/**").addResourceLocations("classpath:/static/");
     }
-
 }

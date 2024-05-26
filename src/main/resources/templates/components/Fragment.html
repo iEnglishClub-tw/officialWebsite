@@ -1,31 +1,40 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:fragment="header">
+    <!-- 定義 HTML 文件的字符編碼和視口設置 -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- 定義頁面的標題 -->
     <title>Taipei iEnglish Official Site</title>
+    <!-- 引入 Bootstrap 樣式表 -->
     <link rel="stylesheet" th:href="@{/assets/bootstrap.min.css}"/>
+    <!-- 引入 Font Awesome 樣式表 -->
     <link rel="stylesheet" th:href="@{/assets/font-awesome-4.7.0/css/font-awesome.min.css}"/>
+    <!-- 引入自定義樣式表 -->
     <link rel="stylesheet" th:href="@{/assets/main.css}" />
+    <!-- 引入 jQuery 庫 -->
     <script th:src="@{/assets/jquery.min.js}"></script>
+    <!-- 引入 Bootstrap 的 JavaScript 庫 -->
     <script th:src="@{/assets/bootstrap.bundle.min.js}"></script>
-
 </head>
 <body>
 <div th:fragment="navbar">
+    <!-- 定義導航欄 -->
     <nav class="navbar navbar-light bg-light">
-
+        <!-- 定義導航欄的品牌圖標及名稱 -->
         <a class="navbar-brand" href="#">
             <img th:src="@{/assets/ienglish.png}" width="30" height="30" class="d-inline-block align-top" alt="">
             Taipei Interactive English Club
         </a>
+        <!-- 定義導航欄的折疊按鈕 -->
         <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+        <!-- 定義導航欄的連結 -->
         <div class="navbar-collapse collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item active">
-                    <a class="nav-link" th:href="@{/}" th:text="#{label.home}">Home </a>
+                    <a class="nav-link" th:href="@{/}" th:text="#{label.home}">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{/FAQ}" th:text="#{label.FAQ}">Club FAQ</a>
@@ -37,12 +46,13 @@
         </div>
     </nav>
 </div>
-<!-- fragment for Carousel-->
+
+<!-- 定義輪播圖片段 -->
 <div th:fragment="carousel">
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item center active">
-                <img th:src="@{/assets/images/testing1.png}" width="400px" height="300px"  class="rounded mx-auto d-block" alt="First slide"/>
+                <img th:src="@{/assets/images/testing1.png}" width="400px" height="300px" class="rounded mx-auto d-block" alt="First slide"/>
             </div>
             <div class="carousel-item center">
                 <img th:src="@{/assets/images/testing2.png}" width="400px" height="300px" class="rounded mx-auto d-block" alt="Second slide"/>
@@ -52,18 +62,19 @@
             </div>
         </div>
     </div>
-
 </div>
 
-
+<!-- 定義頁腳片段 -->
 <div th:fragment="footer">
     <footer class="container py-5">
         <div class="row">
             <div class="col-12 col-md">
+                <!-- 頁腳品牌圖標及版權信息 -->
                 <img th:src="@{/assets/ienglish.png}" height="90px" width="90px">
                 <small class="d-block mb-3 text-muted">© 2017-2021</small>
             </div>
             <div class="col-6 col-md">
+                <!-- 頁腳的首頁鏈接列表 -->
                 <h5 th:text="#{label.home}">Home</h5>
                 <ul class="list-unstyled text-small">
                     <li><a class="text-muted" href="#">Cool stuff</a></li>
@@ -75,6 +86,7 @@
                 </ul>
             </div>
             <div class="col-6 col-md">
+                <!-- 頁腳的常見問題鏈接列表 -->
                 <h5 th:text="#{label.FAQ}">Club FAQ</h5>
                 <ul class="list-unstyled text-small">
                     <li><a class="text-muted" href="#">Resource</a></li>
@@ -84,6 +96,7 @@
                 </ul>
             </div>
             <div class="col-6 col-md">
+                <!-- 頁腳的文章庫鏈接列表 -->
                 <h5 th:text="#{label.article}">Article Repository</h5>
                 <ul class="list-unstyled text-small">
                     <li><a class="text-muted" href="#">Business</a></li>
@@ -93,11 +106,12 @@
                 </ul>
             </div>
             <div class="col-6 col-md">
+                <!-- 頁腳的社交媒體鏈接列表 -->
                 <h5 th:text="#{label.tune}">Social Media</h5>
                 <ul class="list-unstyled text-small">
                     <li><i class="fa fa-facebook-square" aria-hidden="true"></i> <a class="text-muted" href="#" th:text="#{label.fb}">Facebook</a></li>
                     <li><i class="fa fa-instagram" aria-hidden="true"></i> <a class="text-muted" href="#" th:text="#{label.ig}">Instagram</a></li>
-                    <li><i class="fa fa-youtube" aria-hidden="true"></i> <a class="text-muted" href="#" th:text="#{label.yt}">Youtube</a></li>
+                    <li><i class="fa fa-youtube" aria-hidden="true"></i> <a class="text-muted" href="#" th:text="#{label.yt}">YouTube</a></li>
                 </ul>
             </div>
         </div>
