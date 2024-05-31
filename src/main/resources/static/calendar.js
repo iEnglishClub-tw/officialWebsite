@@ -5,8 +5,7 @@
             "banner": "iEnglish Banner here",
             "footer": "iEnglish footers",
             "itemsPerPage": 6,
-            "apiKey": '', // Your Google API key
-            "calendarId": '', // Your Google Calendar ID
+            "apiUrl": '/api/events', // Your backend API URL
             "width": '80%',
             "height": '600px',
             "onDisplay": function() {}
@@ -15,7 +14,8 @@
         function feedUtils(element, options) {
             this.options = $.extend({}, defaultOptions, options || {});
             this.ele = $(element);
-            this.currentPage = 0;
+            this.currentPageToken = null;
+            this.previousPageTokens = [];
             this.events = [];
             this.init();
         }
@@ -49,23 +49,20 @@
             this.ele.append(this.feed, this.controls);
         };
 
-        feedUtils.prototype.fetchEvents = function() {
-            const currentYear = new Date().getFullYear();
-            const timeMin = `${currentYear}-01-01T00:00:00Z`;
-            const timeMax = `${currentYear}-12-31T23:59:59Z`;
+        feedUtils.prototype.fetchEvents = function(pageToken = null) {
+            const data = {
+                page: this.previousPageTokens.length,
+                size: this.options.itemsPerPage,
+                pageToken: pageToken
+            };
 
             $.ajax({
-                url: `https://www.googleapis.com/calendar/v3/calendars/${this.options.calendarId}/events`,
-                data: {
-                    key: this.options.apiKey,
-                    timeMin: timeMin,
-                    timeMax: timeMax,
-                    singleEvents: true,
-                    orderBy: 'startTime'
-                },
+                url: this.options.apiUrl,
+                data: data,
                 method: 'GET',
                 success: (response) => {
                     this.events = response.items;
+                    this.nextPageToken = response.nextPageToken || null;
                     this.displayEvents();
                 },
                 error: (response) => {
@@ -75,13 +72,9 @@
         };
 
         feedUtils.prototype.displayEvents = function() {
-            const start = this.currentPage * this.options.itemsPerPage;
-            const end = Math.min(start + this.options.itemsPerPage, this.events.length);
-            const eventsToShow = this.events.slice(start, end);
-
             this.refreshItems.empty();
 
-            eventsToShow.forEach(event => {
+            this.events.forEach(event => {
                 const eventItem = `
                     <div class="calendarItem">
                         <p>${event.summary}</p>
@@ -92,29 +85,27 @@
             });
 
             this.updateControls();
-//            this.options.onDisplay();
-//            this.options.onDisplay();
+            this.options.onDisplay();
         };
 
         feedUtils.prototype.updateControls = function() {
-            const totalPages = Math.ceil(this.events.length / this.options.itemsPerPage);
-            this.prevButton.toggle(this.currentPage > 0);
-            this.nextButton.toggle(this.currentPage < totalPages - 1);
+            this.prevButton.toggle(this.previousPageTokens.length > 0);
+            this.nextButton.toggle(this.nextPageToken != null);
         };
 
         feedUtils.prototype.bindControls = function() {
             this.prevButton.off('click').on('click', () => {
-                if (this.currentPage > 0) {
-                    this.currentPage--;
-                    this.displayEvents();
+                if (this.previousPageTokens.length > 0) {
+                    this.currentPageToken = this.previousPageTokens.pop();
+                    this.fetchEvents(this.currentPageToken);
                 }
             });
 
             this.nextButton.off('click').on('click', () => {
-                const totalPages = Math.ceil(this.events.length / this.options.itemsPerPage);
-                if (this.currentPage < totalPages - 1) {
-                    this.currentPage++;
-                    this.displayEvents();
+                if (this.nextPageToken) {
+                    this.previousPageTokens.push(this.currentPageToken);
+                    this.currentPageToken = this.nextPageToken;
+                    this.fetchEvents(this.currentPageToken);
                 }
             });
         };

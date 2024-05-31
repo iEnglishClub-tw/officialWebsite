@@ -7,9 +7,9 @@
 
 .calendarItem {
     border-bottom: 1px dashed rgba(204, 204, 204, 1);
-    padding: 10px;
-    max-height: 100px; /* 设置最大高度 */
-    overflow: auto; /* 允许内容滚动 */
+    padding: 5px;
+    max-height: 70px;
+    overflow: hidden;
 }
 
 .refresh-items {

@@ -2,6 +2,17 @@
 <!-- index.html -->
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="components/Fragment :: header"></head>
+<script>
+    $(document).ready(function() {
+    $('#carousel-container').feedUtils({
+            width: '100%',
+            height: '500px',
+            onDisplay: function() {
+                console.log('Events displayed');
+            }
+        });
+});
+</script>
 <body>
 <div th:replace="components/Fragment :: navbar">navbar here</div>
 <div>
