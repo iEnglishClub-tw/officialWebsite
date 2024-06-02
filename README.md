@@ -62,4 +62,4 @@
 
 ## 聯絡我們
 
-如有任何問題或需要幫助，請聯絡專案負責人或提交 [GitHub Issues](https://github.com/your-repo/issues)。
+如有任何問題或需要幫助，請聯絡專案負責人或提交 [GitHub Issues]([https://github.com/your-repo/issues](https://github.com/iEnglishClub-tw/officialWebsite/issues))。
