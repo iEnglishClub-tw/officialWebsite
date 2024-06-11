@@ -2,6 +2,17 @@
 <!-- index.html -->
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="components/Fragment :: header"></head>
+<script>
+    $(document).ready(function() {
+    $('#carousel-container').feedUtils({
+            width: '100%',
+            height: '500px',
+            onDisplay: function() {
+                console.log('Events displayed');
+            }
+        });
+});
+</script>
 <body>
 <div th:replace="components/Fragment :: navbar">navbar here</div>
 <div>
@@ -55,29 +66,7 @@
         <div class="col-lg-5">
             <div class="col-md-12">
                 <h2>Calendar Feeds</h2>
-                <!-- Calendar Feed Here -->
-                <div>
-                    <!-- Feed title here-->
-                    <div class="calendarBanner">
-                        iEnglish Schedule
-                    </div>
-                    <div class="calendarItem">
-                        Event 1
-                    </div>
-                    <div class="calendarItem">
-                        Event 2
-                    </div>
-                    <div class="calendarItem">
-                        Event 3
-                    </div>
-                    <div class="calendarItem">
-                        Event 4
-                    </div>
-                    <!-- Feed Footer -->
-                    <div class="calendarBanner">
-                        calendar Footer here
-                    </div>
-                </div>
+                <div id="carousel-container"></div>
             </div>
             <div class="col-md-12">
                 <h2>FaceBook FanPage</h2>
