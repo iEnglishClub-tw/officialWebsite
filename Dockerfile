@@ -1,25 +1,16 @@
 # Build stage
-FROM maven:3.6.3-openjdk-8 AS build
+FROM openjdk:8-jdk-slim AS build
 
 WORKDIR /app
 
-# Copy the Maven wrapper and the pom file
-COPY mvnw .
-COPY .mvn .mvn
-COPY pom.xml .
+# Copy the source code here
+# Copy the source code to the container
+COPY . .
 
-# Ensure the Maven wrapper is executable
-RUN chmod +x mvnw
-
-# Download dependencies
-RUN ./mvnw dependency:go-offline
-
-# Copy the rest of the application source code
-COPY src ./src
-
-# Build the application
-RUN ./mvnw clean package -DskipTests
-
+# Debugging information
+RUN ./mvnw --version \
+    && ./mvnw clean package -Dmaven.test.skip=true
+    
 # Run stage
 FROM openjdk:8-jre
 
