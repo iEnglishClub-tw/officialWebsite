@@ -1,3 +1,22 @@
+/**
+ * @fileOverview Calendar Feed Utils jQuery Plugin
+ * @version 1.0.0
+ * @requires jQuery
+ */
+
+/**
+ * @namespace jQuery.fn
+ * @function feedUtils
+ * @param {Object} options - Configuration options for the feed utils.
+ * @param {string} [options.title="Calendar Feeds"] - The title of the calendar feed.
+ * @param {string} [options.banner="iEnglish Banner here"] - The banner text to display.
+ * @param {string} [options.footer="iEnglish footers"] - The footer text to display.
+ * @param {number} [options.itemsPerPage=6] - The number of items to display per page.
+ * @param {string} [options.apiUrl='/api/events'] - The backend API URL for fetching events.
+ * @param {string} [options.width='80%'] - The width of the feed component.
+ * @param {string} [options.height='600px'] - The height of the feed component.
+ * @param {function} [options.onDisplay] - Callback function to be executed when events are displayed.
+ */
 (function($) {
     $.fn.feedUtils = function(options) {
         var defaultOptions = {
@@ -11,7 +30,12 @@
             "onDisplay": function() {}
         };
 
-        // 元件起始點：程式的部分變數初始化
+        /**
+         * 元件起始點：程式的部分變數初始化
+         * @constructor
+         * @param {HTMLElement} element - The element to initialize the feed on.
+         * @param {Object} options - The options to override default settings.
+         */
         function feedUtils(element, options) {
             this.options = $.extend({}, defaultOptions, options || {});
             this.ele = $(element);
@@ -21,7 +45,9 @@
             // 開始一系列邏輯
             this.init();
         }
-        // 執行 feedUtil 邏輯
+        /**
+         * Initialize the feed utils.
+         */
         feedUtils.prototype.init = function() {
             // 畫出 google calendar feed 的外框：footer, header
             this.drawUI();
@@ -33,6 +59,9 @@
             this.bindControls();
         };
 
+        /**
+         * Set the style for the feed component.
+         */
         feedUtils.prototype.setStyle = function() {
             this.ele.css({
                 width: this.options.width,
@@ -43,6 +72,9 @@
             });
         };
 
+        /**
+         * Draw the user interface for the feed.
+         */
         feedUtils.prototype.drawUI = function() {
             // banner 顯示
             this.banner = $('<div class="calendarBanner"></div>').text(this.options.banner);
@@ -58,6 +90,10 @@
             this.ele.append(this.feed, this.controls);
         };
 
+        /**
+         * Fetch events from the backend API.
+         * @param {string|null} [pageToken=null] - The page token for pagination.
+         */
         feedUtils.prototype.fetchEvents = function(pageToken = null) {
             const data = {
                 page: this.previousPageTokens.length,
@@ -80,6 +116,9 @@
             });
         };
 
+        /**
+         * Display the fetched events.
+         */
         feedUtils.prototype.displayEvents = function() {
             this.refreshItems.empty();
             // 顯示 google calendar events
@@ -100,6 +139,9 @@
             this.options.onDisplay();
         };
 
+        /**
+         * Update the styles of the event items.
+         */
         feedUtils.prototype.updateItemStyles = function() {
             const calendarItems = this.refreshItems.children('.calendarItem');
             const isFirstPage = this.previousPageTokens.length === 0;
@@ -121,11 +163,17 @@
             }
         };
 
+        /**
+         * Update the visibility of the control buttons.
+         */
         feedUtils.prototype.updateControls = function() {
             this.prevButton.toggle(this.previousPageTokens.length > 0);
             this.nextButton.toggle(this.nextPageToken != null);
         };
 
+        /**
+         * Bind the control button events.
+         */
         feedUtils.prototype.bindControls = function() {
             this.prevButton.off('click').on('click', () => {
                 if (this.previousPageTokens.length > 0) {
