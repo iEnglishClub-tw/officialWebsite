@@ -16,6 +16,10 @@
 .arrow-button{
    color: white;
    background: rgba(51, 51, 51, 1);
+   /* 防止按鈕與 footer, banner 區域重疊 */
+   transform: translateY(-54%);
+   top:54%;
+   height: calc(100% - 81px);
 }
 
 .refresh-items {
