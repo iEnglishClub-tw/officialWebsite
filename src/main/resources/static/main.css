@@ -19,7 +19,8 @@
    /* 防止按鈕與 footer, banner 區域重疊 */
    transform: translateY(-54%);
    top:54%;
-   height: calc(100% - 81px);
+   /* 限制 button 高度 */
+   max-height: 50px;
 }
 
 .refresh-items {

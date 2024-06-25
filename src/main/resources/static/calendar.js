@@ -15,7 +15,6 @@
  * @param {string} [options.apiUrl='/api/events'] - The backend API URL for fetching events.
  * @param {string} [options.width='80%'] - The width of the feed component.
  * @param {string} [options.height='600px'] - The height of the feed component.
- * @param {function} [options.onDisplay] - Callback function to be executed when events are displayed.
  */
 (function($) {
     $.fn.feedUtils = function(options) {
@@ -26,8 +25,7 @@
             "itemsPerPage": 6,
             "apiUrl": '/api/events', // Your backend API URL
             "width": '80%',
-            "height": '600px',
-            "onDisplay": function() {}
+            "height": '600px'
         };
 
         /**
@@ -80,7 +78,7 @@
             this.banner = $('<div class="calendarBanner"></div>').text(this.options.banner);
             this.refreshItems = $('<div class="refresh-items"></div>').empty();
             // footer 顯示文字
-            this.footer = $('<div class="calendarBanner"></div>').text(this.options.footer);
+            this.footer = $('<div class="calendarBanner"></div>').html(this.options.footer);
             this.feed = $('<div></div>').append(this.banner, this.refreshItems, this.footer);
             this.controls = $('<div class="carousel-controls"></div>');
             // 新增 Javascript 按鈕樣式，使用 arrow-button 複寫部分 css 顯示
@@ -136,7 +134,6 @@
             this.updateItemStyles();
             // 依事件取得狀態，控制上下一頁按鈕的狀態，決定是否隱藏上一頁或下一頁
             this.updateControls();
-            this.options.onDisplay();
         };
 
         /**
