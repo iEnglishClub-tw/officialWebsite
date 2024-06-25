@@ -70,7 +70,7 @@ public class HomeController {
     public Map<String, Object> queryFromCalendar(@RequestParam int page,
         @RequestParam int size,
         @RequestParam(required = false) String pageToken) {
-        LocalDate startDate = LocalDate.now().withDayOfYear(1);
+        LocalDate startDate = LocalDate.now();
         LocalDate endDate = startDate.plusYears(1).minusDays(1);
 
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'");
