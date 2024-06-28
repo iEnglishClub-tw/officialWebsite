@@ -12,6 +12,17 @@
     overflow: hidden;
 }
 
+/* 新增此 class 用於複寫 carousel-control-prev, carousel-control-next 的部分樣式(文字顏色、背景顏色) */
+.arrow-button{
+   color: white;
+   background: rgba(51, 51, 51, 1);
+   /* 防止按鈕與 footer, banner 區域重疊 */
+   transform: translateY(-54%);
+   top:54%;
+   /* 限制 button 高度 */
+   max-height: 50px;
+}
+
 .refresh-items {
     max-height: 500px; /* 限制容器的最大高度 */
     overflow: auto; /* 允许内容滚动 */
